@@ -1,0 +1,33 @@
+package hrmAppExample;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LoginLogoutXpath {
+    public static void main(String[] args) throws InterruptedException {
+
+        System.out.println("Opening Browser...");
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        driver.manage().window().maximize();
+        Thread.sleep(2000);
+
+        System.out.println("Logging in...");
+        driver.findElement(By.xpath("//input[@name='username']")).sendKeys("Admin");
+        driver.findElement(By.xpath("//input[@name='password']")).sendKeys("admin123");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        Thread.sleep(3000);
+        System.out.println("Login Done");
+
+        System.out.println("Logging out...");
+        driver.findElement(By.xpath("//span[@class='oxd-userdropdown-tab']")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//a[text()='Logout']")).click();
+        Thread.sleep(2000);
+        System.out.println("Logout Done");
+
+        driver.quit();
+        System.out.println("Browser Closed");
+    }
+}
